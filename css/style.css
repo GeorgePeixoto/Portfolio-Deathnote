@@ -1,0 +1,445 @@
+.special-elite-regular {
+  font-family: "Special Elite", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+    --bg-color: #f4f4f4;
+    /* Cor de papel velho/pergaminho */
+    --text-color: #1a1a1a;
+    --accent-color: #8b0000;
+    /* Vermelho escuro para detalhes */
+    --font-main: 'Courier Prime', monospace;
+    --font-title: 'UnifrakturMaguntia', serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    /* Trocamos as cores fixas por variáveis */
+    background: radial-gradient(circle, var(--bg-color) 0%, #d1d1d1 100%);
+    background-attachment: fixed;
+    font-family: var(--font-main);
+    transition: background 0.5s ease, color 0.5s ease; /* Transição suave */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 32px;
+}
+
+nav ul {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+}
+
+nav ul a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+nav span {
+    font-size: 2.5rem;
+    font-family: var(--font-title);
+}
+
+#intro {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column; /* Isso empilha o H1 e o P um sobre o outro */
+    align-items: center;    /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente */
+    padding: 0 50px;
+    width: 100%;
+}
+
+#about {
+    display: flex;
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    padding: 80px 20px;
+}
+
+section .rules-card {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    padding: 40px;
+    max-width: 600px;
+    border: 1px solid #f4f4f4;
+    box-shadow: 15px 15px 0px var(--accent-color);
+    transform: rotate(1deg);
+    transition: all 0.5s ease;
+}
+
+.rules-card ol {
+    list-style-type: upper-roman;
+    /* Isso muda para I, II, III... */
+    padding-left: 20px;
+    margin-top: 20px;
+}
+
+.rules-card li {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    /* Deixa o texto mais legível */
+}
+
+.rules-card h2 {
+    font-family: var(--font-title);
+    text-align: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.project-page {
+    background-color: white;
+    background-image: repeating-linear-gradient(transparent,
+            transparent 30px,
+            #add8e6 30px,
+            #add8e6 31px);
+    padding: 40px 40px 40px 60px;
+    border-left: 2px solid #ffcccb;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+    min-height: 300px;
+    max-width: 500px;
+    margin: 20px auto;
+    font-family: var(--font-main);
+    color: #333;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Isso vai fazer os projetos ficarem lado a lado e se ajustarem sozinhos no celular */
+    gap: 30px;
+}
+
+.project-page:hover {
+    color: var(--accent-color);
+    transform: scale(1.05); /* Dá um zoom de 5% no card */
+    box-shadow: 10px 10px 20px rgba(139, 0, 0, 0.3);
+}
+
+/* Quando o body TIVER a classe .shinigami-mode, essas variáveis mudam: */
+body.shinigami-mode {
+    --bg-color: #4a0000; /* Vermelho sangue profundo */
+    --text-color: #ff0000; /* Vermelho brilhante */
+    --accent-color: #000000; /* Detalhes em preto */
+}
+
+/* Efeito extra: deixar as imagens ou o 'G' com brilho vermelho */
+body.shinigami-mode nav span {
+    text-shadow: 0 0 15px #ff0000;
+    transition: 0.5s;
+}
+
+body.shinigami-mode button {
+    text-shadow: 0 0 15px #ff0000;
+}
+
+button {
+    background-color: transparent;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+    padding: 10px 20px;
+    font-family: var(--font-main);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 30px; /* Deixa ele arredondado */
+    z-index: 1000;       /* Garante que ele fique acima de tudo */
+}
+
+#intro h1 {
+    font-size: 2.2rem; /* Diminuímos um pouco para caber mais texto */
+    max-width: fit-content; /* O container vai ter exatamente o tamanho do texto */
+    margin: 0 auto; /* Centraliza o bloco */
+    text-align: center;
+    line-height: 1.2;
+    text-transform: uppercase;
+    border-right: 4px solid var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 4s steps(50, end), blink .75s step-end infinite;
+}
+
+/* Animação para o cursor piscar (detalhe extra de estilo) */
+@keyframes blink {
+  from, to { border-color: transparent }
+  50% { border-color: var(--text-color); }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+.subtitle {
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    animation-delay: 4.5s; /* Ele só aparece depois que a digitação termina */
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+.subtitle {
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    animation-delay: 4.5s; /* Espera a digitação do H1 terminar */
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color); /* Cria uma moldura */
+    padding: 5px 15px;
+    text-transform: uppercase;
+    transform: rotate(-5deg); /* Dá um ar de carimbo torto no papel */
+    font-weight: bold;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Quando os olhos estão ativos, o papel dos projetos também muda */
+body.shinigami-mode .project-page {
+    background-color: #2a0000; /* Um vermelho bem escuro, quase preto */
+    color: #ff0000;
+    background-image: repeating-linear-gradient(transparent,
+            transparent 30px,
+            #660000 30px,
+            #660000 31px); /* Linhas agora são vermelhas escuras */
+    border-left: 2px solid var(--text-color);
+}
+
+.profile-area {
+    margin-bottom: 20px;
+    width: 150px;
+    height: 150px;
+    border: 3px solid var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-title);
+    font-size: 5rem;
+    transition: 0.5s;
+}
+
+body.shinigami-mode .profile-area {
+    border-color: var(--text-color);
+    box-shadow: 0 0 20px var(--text-color);
+}
+
+/* ========== CONTATO ========== */
+
+#contact {
+    display: flex;
+    justify-content: center;
+    padding: 80px 20px;
+}
+
+.contact-card {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid #f4f4f4;
+    box-shadow: -15px 15px 0px var(--accent-color);
+    transform: rotate(-1deg);
+    transition: all 0.5s ease;
+}
+
+.contact-card h2 {
+    font-family: var(--font-title);
+    text-align: center;
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+}
+
+.contact-intro {
+    text-align: center;
+    margin-top: 15px;
+    font-style: italic;
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+.contact-list {
+    list-style: none;
+    margin-top: 25px;
+    padding: 0;
+}
+
+.contact-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px dashed rgba(244, 244, 244, 0.2);
+}
+
+.contact-list li:last-child {
+    border-bottom: none;
+}
+
+.contact-label {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.contact-list a {
+    color: var(--bg-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.contact-list a:hover {
+    color: var(--accent-color);
+    text-shadow: 0 0 5px var(--accent-color);
+}
+
+body.shinigami-mode .contact-card {
+    box-shadow: -15px 15px 0px var(--accent-color);
+}
+
+body.shinigami-mode .contact-list a:hover {
+    color: #ff4444;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+/* ========== RESPONSIVIDADE ========== */
+
+/* Tablet */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    nav ul {
+        gap: 16px;
+    }
+
+    #intro {
+        padding: 0 20px;
+        min-height: 50vh;
+    }
+
+    #intro h1 {
+        font-size: 1.6rem;
+        white-space: normal;
+        overflow: visible;
+        border-right: none;
+        animation: none;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    section .rules-card {
+        padding: 25px;
+        box-shadow: 8px 8px 0px var(--accent-color);
+        transform: rotate(0deg);
+    }
+
+    .project-page {
+        padding: 30px 30px 30px 40px;
+    }
+
+    #projects {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+
+    .contact-card {
+        padding: 25px;
+        box-shadow: -8px 8px 0px var(--accent-color);
+        transform: rotate(0deg);
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    nav span {
+        font-size: 2rem;
+    }
+
+    nav ul {
+        gap: 12px;
+        font-size: 0.9rem;
+    }
+
+    #intro {
+        min-height: 40vh;
+        padding: 0 15px;
+    }
+
+    #intro h1 {
+        font-size: 1.2rem;
+    }
+
+    .subtitle {
+        font-size: 0.85rem;
+        padding: 4px 10px;
+    }
+
+    #about {
+        padding: 40px 15px;
+    }
+
+    section .rules-card {
+        padding: 20px;
+        max-width: 100%;
+        box-shadow: 5px 5px 0px var(--accent-color);
+    }
+
+    .project-page {
+        padding: 20px 20px 20px 30px;
+        max-width: 100%;
+    }
+
+    .profile-area {
+        width: 100px;
+        height: 100px;
+        font-size: 3.5rem;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+
+    #contact {
+        padding: 40px 15px;
+    }
+
+    .contact-card {
+        padding: 20px;
+        max-width: 100%;
+        box-shadow: -5px 5px 0px var(--accent-color);
+    }
+
+    .contact-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}
