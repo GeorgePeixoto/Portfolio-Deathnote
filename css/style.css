@@ -242,6 +242,153 @@ body.shinigami-mode .profile-area {
     box-shadow: 0 0 20px var(--text-color);
 }
 
+/* ========== ANIMAÇÕES DEATH NOTE ========== */
+
+/* Scroll reveal - seções aparecem como nomes escritos no caderno */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Rules card e contact card revelam com rotação */
+.reveal-card {
+    opacity: 0;
+    transform: translateY(40px) rotate(0deg);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-card.visible {
+    opacity: 1;
+}
+
+#about .reveal-card.visible {
+    transform: translateY(0) rotate(1deg);
+}
+
+#contact .reveal-card.visible {
+    transform: translateY(0) rotate(-1deg);
+}
+
+/* Itens de contato aparecem um por um (escrevendo nomes no Death Note) */
+.contact-list li {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.contact-list li.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.contact-list li:nth-child(1) { transition-delay: 0.2s; }
+.contact-list li:nth-child(2) { transition-delay: 0.5s; }
+.contact-list li:nth-child(3) { transition-delay: 0.8s; }
+
+/* Pulso no profile - como batimento cardíaco (countdown do Death Note) */
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.04); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.02); }
+}
+
+.profile-area {
+    animation: heartbeat 3s ease-in-out infinite;
+}
+
+/* Shinigami mode: profile pulsa vermelho como olhos do Shinigami */
+@keyframes shinigamiPulse {
+    0%, 100% { box-shadow: 0 0 20px var(--text-color); }
+    50% { box-shadow: 0 0 40px #ff0000, 0 0 80px rgba(255, 0, 0, 0.3); }
+}
+
+body.shinigami-mode .profile-area {
+    animation: shinigamiPulse 2s ease-in-out infinite;
+}
+
+/* Flicker na transição do Shinigami mode (como TV do Ryuk) */
+@keyframes shinigamiFlicker {
+    0% { opacity: 1; }
+    10% { opacity: 0.3; }
+    15% { opacity: 1; }
+    20% { opacity: 0.5; }
+    25% { opacity: 1; }
+    50% { opacity: 0.8; }
+    55% { opacity: 1; }
+    100% { opacity: 1; }
+}
+
+body.flickering {
+    animation: shinigamiFlicker 0.6s ease-in-out;
+}
+
+/* Botão Shinigami - pulso sutil convidando ao clique */
+@keyframes buttonGlow {
+    0%, 100% { box-shadow: 0 0 0px transparent; }
+    50% { box-shadow: 0 0 12px rgba(139, 0, 0, 0.4); }
+}
+
+button {
+    animation: buttonGlow 3s ease-in-out infinite;
+}
+
+body.shinigami-mode button {
+    animation: buttonGlow 2s ease-in-out infinite;
+}
+
+@keyframes buttonGlowRed {
+    0%, 100% { box-shadow: 0 0 0px transparent; }
+    50% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.5); }
+}
+
+body.shinigami-mode button {
+    animation: buttonGlowRed 2s ease-in-out infinite;
+}
+
+/* Nav links - sublinhado aparece como tinta escorrendo */
+nav ul a {
+    position: relative;
+}
+
+nav ul a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.4s ease;
+}
+
+nav ul a:hover::after {
+    width: 100%;
+}
+
+body.shinigami-mode nav ul a::after {
+    background-color: #ff0000;
+    box-shadow: 0 0 8px #ff0000;
+}
+
+/* Rules card hover - levita como o caderno flutuando */
+section .rules-card:hover {
+    transform: rotate(1deg) translateY(-8px);
+    box-shadow: 15px 25px 5px var(--accent-color);
+}
+
+/* Contact card hover */
+.contact-card:hover {
+    transform: rotate(-1deg) translateY(-8px);
+    box-shadow: -15px 25px 5px var(--accent-color);
+}
+
 /* ========== CONTATO ========== */
 
 #contact {
@@ -357,7 +504,15 @@ body.shinigami-mode .contact-list a:hover {
     section .rules-card {
         padding: 25px;
         box-shadow: 8px 8px 0px var(--accent-color);
-        transform: rotate(0deg);
+        transform: rotate(0deg) !important;
+    }
+
+    section .rules-card:hover {
+        transform: translateY(-5px) !important;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-5px) !important;
     }
 
     .project-page {
